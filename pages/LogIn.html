@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <script src="https://kit.fontawesome.com/ffe03e37bb.js" crossorigin="anonymous"></script>
+   <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+   <link rel="stylesheet" href="../styles/style.css">
+   
+   <title>Assignment 3 </title>
+</head>
+<body>
+   
+   <div class="toast toast-success position-fixed bottom-0 right-0" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-body d-flex justify-content-around align-item-center">
+         <i class="far fa-check-circle m-auto"></i>
+         <div class="d-flex flex-column ">
+            <h5 style="margin: auto 0">Success</h5>
+            <p class="m-auto">You can access all the features in this app</p>
+         </div>
+         <button type="button" class="m-auto close text-center" data-dismiss="toast" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+      </div>
+   </div>
+
+   <div class="toast toast-error position-fixed bottom-0 right-0" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-body d-flex justify-content-around align-item-center">
+         <i class="far fa-check-circle m-auto"></i>
+         <div class="d-flex flex-column ">
+            <h5 style="margin: auto 0">Error</h5>
+            <p class="m-auto">Sorry! Invalid credential, please try again!</p>
+         </div>
+         <button type="button" class="m-auto close text-center" data-dismiss="toast" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+      </div>
+   </div>
+
+   <div class="m-auto" style="display: flex; flex-direction:column; justify-content: center; min-height: 100vh">
+      <div id="cLogin" class="m-auto rounded" style="min-width: 400px; max-width: 500px; border: #202A44 solid 0.2px">
+         <div class="card">
+            <div class="card-header">
+               <div class="card-title m-auto d-flex align-item-center">
+                  <h1 class=" m-auto"><i class="fas fa-user-cog"></i></h1>
+               </div>
+            </div>
+            <div class="card-body">
+               <form>
+                  <div class="form-group">
+                     <label for="cLoginID">Username</label>
+                     <div class="cInputContainer">
+                        <i class="fas fa-user"></i>
+                        <input type="text" class="w-100 form-control" required placeholder="Please enter username!" id="cLoginID">
+                     </div>
+                     
+                  </div>
+
+                  <div class="form-group">
+                     <label for="cLoginPasword">Password</label>
+                     <div class="cInputContainer">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" class="form-control" required placeholder="Please enter password!" id="cLoginPassword">
+                     </div>
+                  </div>
+
+                  <div class="form-group d-flex justify-content-center align-item-center">
+                     <input type="checkbox"  class="mr-1" id="cLoginRemember">
+                     <label style="margin: auto 0" for="cLoginRemember">Remember me?</label>
+                  </div>
+
+                  
+                  <button type="button" class="btn" style="background: #202A44; color: white" id="cLoginBtn">Log in</button>
+                  
+                  
+               </form>
+            </div>
+         </div>
+      </div>
+   </div>
+   
+   
+   
+   <script type="module" src="../scripts/login.js"></script>
+</body>
+</html>

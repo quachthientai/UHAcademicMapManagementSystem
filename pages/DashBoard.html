@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <script src="https://kit.fontawesome.com/ffe03e37bb.js" crossorigin="anonymous"></script>
+   <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+   <link rel="stylesheet" href="../styles/style.css">
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+   
+   
+   <title>Document</title>
+</head>
+<body>
+  <div class="alert alert-success alert-dismissible fade show" style="display:none"  data-dismiss="alert" role="alert">
+    This is a success alert—check it out!
+  </div>
+   <div class="container-fluid d-flex p-0" id="cDashApp" style="height: 100vh">
+      
+    
+    <!-- <div class="alert alert-danger" style="display: none" role="alert">
+      This is a danger alert—check it out!
+    </div> -->
+
+      <div class="w-10 p-0" id="cSideNav">
+         <a class="nav-link navbar-header d-flex align-item-center" href="#">
+            <h1 style="margin: auto 0; color:gray"><i class="fas fa-poo-storm d-inline-block" ></i></h1>
+            <h1 style="color:#fff">LOGO</h1>
+          </a>
+         <nav class="navbar-nav d-flex flex-column justify-content-center align-item-center ">
+            <a class="nav-link p-3" id="cHomeBtn"><i class="fas fa-home"></i>Home</a>
+            
+            <div class="dropdown ">
+               <div class="nav-link p-3 dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                  <i class="fas fa-table"></i>Degree
+               </div>
+               <div class="dropdown-menu" id="cSideNav-dropdown">
+                  <a class="dropdown-item" href="#">Add degree</a>
+                  <div class="dropdown-divider"></div>
+                  <div></div>
+               </div>
+            </div>
+
+            
+            <a class="nav-link p-3" id="cEditDegreeBtn"><i class="fas fa-edit"></i>Edit Degree</a>
+            <a class="nav-link p-3" id="cEditCoursesBtn"><i class="fas fa-edit"></i>Edit Courses</a>
+            <a class="nav-link p-3" id="cLogOutBtn"><i class="fas fa-sign-out"></i>Log out</a>
+         </nav>
+      </div>
+      
+      <div class="tq-add-degree-modal modal fade" id="addDegreeModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+         <div class="modal-dialog">
+            <div class="modal-content"  style="width: 700px">
+             
+              <div class="modal-header">
+                <h5 class="modal-title" >Add Degree</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+  
+              <div class="modal-body">
+                  <form>
+                     <div class="row">
+                        <div class="form-group col">
+                           <label for="courseID">College Name</label>
+                           <input type="text" class="form-control degree-input-val" style="text-align: start;" id="Colleges">
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div class="form-group col">
+                           <label for="courseName">Degree Name</label>
+                           <input type="text" class="form-control degree-input-val" style="text-align: start;" id="Name">
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div class="form-group col">
+                           <label for="courseName">Degree Type</label>
+                           <input type="text" class="form-control degree-input-val" style="text-align: start;" id="Type">
+                        </div>
+                     </div>
+                  </form>
+              </div>
+  
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" id="saveAddDegreeModalBtn" class="btn" style="background: #202A44; color: white;">Save</button>
+                
+              </div>
+  
+            </div>
+          </div>
+      </div>
+
+      <div class="tq-edit-course-modal modal fade" id="editCourseModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content"  style="width: 700px">
+           
+            <div class="modal-header">
+              <h5 class="modal-title" id="staticBackdropLabel">Course Edit</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+
+            <div class="modal-body editCourseModal">
+              
+                 <form>
+                    <div class="row">
+                      <div class="form-group col-3">
+                        <label for="courseID">Course No</label>
+                        <input type="text" class="form-control course-input-val" disabled style="text-align: start;" id="courseID">
+                      </div>
+  
+                      <div class="form-group col-9">
+                        <label for="courseName">Course Name</label>
+                        <input type="text" class="form-control course-input-val" style="text-align: start;" id="courseName">
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="form-group col-4">
+                        <label for="courseCreditHours">Credit Hours</label>
+                        <input type="number" min="0" class="form-control course-input-val" style="text-align: start;" id="courseCreditHours">
+                      </div>
+
+                      <div class="form-group col-4">
+                        <label for="courseCreditHours">Lab Hours</label>
+                        <input type="number" min="0" class="form-control course-input-val" style="text-align: start;" id="courseLabHours">
+                      </div>
+
+                      <div class="form-group col-4">
+                        <label for="courseCreditHours">Lecture Hours</label>
+                        <input type="number" min="0" class="form-control course-input-val" style="text-align: start;" id="courseLectureHours">
+                      </div>
+                    </div>
+                    
+                    <div class="row">
+                      <div class="form-group col">
+                        <label for="coursePrerequisite">Course Prerequisite</label>
+                        <textarea type="text" class="form-control course-input-val" style="text-align: start;" id="coursePrerequisite"></textarea>
+                      </div>              
+                    </div>
+
+                    <div class="row">
+                      <div class="form-group col">
+                        <label for="courseDescription">Course Description</label>
+                        <textarea type="text" class="form-control course-input-val" style="text-align: start;" id="courseDescription"></textarea>
+                      </div>              
+                    </div>
+
+                    <div class="row">
+                      <div class="form-group col">
+                        <label for="courseNote">Course Note</label>
+                        <textarea type="text" class="form-control course-input-val" style="text-align: start;" id="courseNote"></textarea>
+                      </div>              
+                    </div>
+
+                    <div class="row">
+                      <div class="form-group col-6">
+                        <label for="courseCoreCategory">Course Corecategory</label>
+                        <input type="text" class="form-control course-input-val" style="text-align: start;" id="courseCoreCategory">
+                     </div>
+                    
+                     <div class="form-group col-6">
+                      <label for="courseCorequisite">Course Corequisite</label>
+                      <input type="text" class="form-control course-input-val" style="text-align: start;" id="courseCorequisite">
+                    </div>
+                    </div>
+                    
+                    <div class="row">
+                      <div class="form-group col-6">
+                        Course Repeatability
+                        <div>
+                          <div class="form-group form-check form-check-inline">
+                            <input class="form-check-input course-input-val" type="radio" name="courseRepeatability" id="inlineRadio1" value="true">
+                            <label class="form-check-label" for="inlineRadio1">True</label>
+                          </div>
+     
+                          <div class="form-group form-check form-check-inline">
+                            <input class="form-check-input course-input-val" type="radio" name="courseRepeatability" id="inlineRadio2" value="false">
+                            <label class="form-check-label" for="inlineRadio2">False</label>
+                          </div>
+                        </div>
+                        
+                      </div>
+
+                      <div class="form-group col-6">
+                        Course Additional Fee
+                        <div>
+                          <div class="form-group form-check form-check-inline">
+                            <input class="form-check-input course-input-val" type="radio" name="courseAdditionalFee" id="inlineRadio3" value="true">
+                            <label class="form-check-label" for="inlineRadio1">True</label>
+                          </div>
+     
+                          <div class="form-group form-check form-check-inline">
+                            <input class="form-check-input course-input-val" type="radio" name="courseAdditionalFee" id="inlineRadio4" value="false">
+                            <label class="form-check-label" for="inlineRadio2">False</label>
+                          </div>
+                        </div>                       
+                      </div>
+
+                    </div>
+                    
+                 </form>
+              
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" id="addFieldEditCourseModalBtn" class="btn" style="background: #202A44; color: white;">Add Field</button>
+              <button type="button" id="saveEditCourseModalBtn" class="btn" style="background: #202A44; color: white;">Save</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="tq-add-course-modal modal fade" id="addCourseModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content"  style="width: 700px">
+           
+            <div class="modal-header">
+              <h5 class="modal-title" >Add Course</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+
+            <div class="modal-body addCourseModal">             
+                 <form>
+                    <div class="row">
+                      <div class="form-group col-3">
+                        <label for="courseID">Course No</label>
+                        <input type="text" class="form-control add-course-input-val" style="text-align: start;" id="addCourseID">
+                      </div>
+  
+                      <div class="form-group col-9">
+                        <label for="courseName">Course Name</label>
+                        <input type="text" class="form-control add-course-input-val" style="text-align: start;" id="addCourseName">
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="form-group col-4">
+                        <label for="courseCreditHours">Credit Hours</label>
+                        <input type="number" min="0" class="form-control add-course-input-val" style="text-align: start;" id="addCourseCreditHours">
+                      </div>
+
+                      <div class="form-group col-4">
+                        <label for="courseCreditHours">Lab Hours</label>
+                        <input type="number" min="0" class="form-control add-course-input-val" style="text-align: start;" id="addCourseLabHours">
+                      </div>
+
+                      <div class="form-group col-4">
+                        <label for="courseCreditHours">Lecture Hours</label>
+                        <input type="number" min="0" class="form-control add-course-input-val" style="text-align: start;" id="addCourseLectureHours">
+                      </div>
+                    </div>
+                    
+                    <div class="row">
+                      <div class="form-group col">
+                        <label for="coursePrerequisite">Course Prerequisite</label>
+                        <textarea type="text" class="form-control add-course-input-val" style="text-align: start;" id="addCoursePrerequisite"></textarea>
+                      </div>              
+                    </div>
+
+                    <div class="row">
+                      <div class="form-group col">
+                        <label for="courseDescription">Course Description</label>
+                        <textarea type="text" class="form-control add-course-input-val" style="text-align: start;" id="addCourseDescription"></textarea>
+                      </div>              
+                    </div>
+
+                    <div class="row">
+                      <div class="form-group col">
+                        <label for="courseNote">Course Note</label>
+                        <textarea type="text" class="form-control add-course-input-val" style="text-align: start;" id="addCourseNote"></textarea>
+                      </div>              
+                    </div>
+
+                    <div class="row">
+                      <div class="form-group col-6">
+                        <label for="courseCoreCategory">Course Corecategory</label>
+                        <input type="text" class="form-control add-course-input-val" style="text-align: start;" id="addCourseCoreCategory">
+                     </div>
+                    
+                     <div class="form-group col-6">
+                      <label for="courseCorequisite">Course Corequisite</label>
+                      <input type="text" class="form-control add-course-input-val" style="text-align: start;" id="addCourseCorequisite">
+                    </div>
+                    </div>
+                    
+                    <div class="row">
+                      <div class="form-group col-6">
+                        Course Repeatability
+                        <div>
+                          <div class="form-group form-check form-check-inline">
+                            <input class="form-check-input add-course-input-val" type="radio" name="courseRepeatability"  value="true">
+                            <label class="form-check-label" for="inlineRadio1">True</label>
+                          </div>
+     
+                          <div class="form-group form-check form-check-inline">
+                            <input class="form-check-input add-course-input-val" type="radio" name="courseRepeatability" value="false">
+                            <label class="form-check-label" for="inlineRadio2">False</label>
+                          </div>
+                        </div>
+                        
+                      </div>
+
+                      <div class="form-group col-6">
+                        Course Additional Fee
+                        <div>
+                          <div class="form-group form-check form-check-inline">
+                            <input class="form-check-input add-course-input-val" type="radio" name="courseAdditionalFee" value="true">
+                            <label class="form-check-label" for="inlineRadio1">True</label>
+                          </div>
+     
+                          <div class="form-group form-check form-check-inline">
+                            <input class="form-check-input add-course-input-val" type="radio" name="courseAdditionalFee" value="false">
+                            <label class="form-check-label" for="inlineRadio2">False</label>
+                          </div>
+                        </div>                       
+                      </div>
+
+                    </div>
+                    
+                 </form>              
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" id="saveAddCourseModalBtn" class="btn" style="background: #202A44; color: white;">Save</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="tq-add-degree-course-modal modal fade" id="addDegreeCourseModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+         <div class="modal-dialog">
+           <div class="modal-content">
+            
+             <div class="modal-header">
+               <h5 class="modal-title">Add Course to Degree</h5>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                 <span aria-hidden="true">&times;</span>
+               </button>
+             </div>
+
+             <div class="modal-body">
+                  <div >
+                    <p class="m-0">Choose course to add from course list</p>
+                    <div class="input-group flex-nowrap">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="addon-wrapping">Course</span>
+                      </div>
+                      <input type="text" id="cFilterInputDegreeCourseModal" class="form-control" placeholder="ID or NAME" >
+                    </div>
+                
+                    <ul class="list-group my-2" style="height: 200px; overflow:scroll; overflow-x: hidden;" id="cAddDegreeCourseList">
+                      
+                    </ul>
+                  </div>
+                  <form>
+                     <div class="form-group">
+                        <label for="YearInput">Year</label>
+                        <select id="YearInput"  style="text-align: start;" class="form-control degree-course-input-val">
+                           <option selected>Choose table year to add</option>
+                        </select>
+                     </div>
+                     
+                     <div class="form-group form-check form-check-inline">
+                        <input class="form-check-input degree-course-input-val" type="radio" name="InputcourseSemester"  value="Fall">
+                        <label class="form-check-label" for="inlineRadio1">Fall</label>
+                      </div>
+
+                      <div class="form-group form-check form-check-inline">
+                        <input class="form-check-input degree-course-input-val" type="radio" name="InputcourseSemester" value="Spring">
+                        <label class="form-check-label" for="inlineRadio2">Spring</label>
+                      </div>
+
+                      
+                  </form>
+               
+             </div>
+
+             <div class="modal-footer">
+               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+               <button type="submit" id="saveDegreeCourseModalBtn" class="btn" style="background: #202A44; color: white">Save</button>
+             </div>
+
+           </div>
+         </div>
+      </div>
+
+      <div id="infoModal" class="tq-modal">
+         <div class="tq-modal-content" id="modal-content">
+           <div class="tq-modal-header">
+             <div>
+               <span id="tq-close-button">&times;</span>
+             </div>
+           </div>
+ 
+           <div class="tq-modal-data">
+             
+           </div>
+ 
+           <div class="tq-modal-footer">
+             <button id="tq-save-button">SAVE</button>
+             <button id="tq-add-button">ADD FIELD</button>
+           </div>
+         </div>
+      </div>
+
+      <div id="cDashContent" class="container-fluid d-flex justify-content-center align-item-center" style="height: 100vh; overflow: scroll;">
+        
+       <div class="jumbotron m-auto">
+          <h1 class="display-4">Hello, world!</h1>
+          <p class="lead">Welcome to UH Academic Map Management System</p>
+          <hr class="my-4">
+          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reprehenderit eligendi cumque architecto esse maxime ipsa magnam voluptates eos mollitia quod.</p>
+          <a class="btn btn-primary btn-lg" href="#" style="background: #202A44; color: white" role="button">Learn more</a>
+       </div>
+
+      </div>
+   </div>
+   <!-- <script src="../data/dummyCourses.js"></script> -->
+   <script type="module" src="../scripts/dashboard.js"></script>
+</body>
+</html>
